@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="chi tiết hóa đơn"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textAllCaps="true"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_marginTop="35dp"
+        android:id="@+id/tv_hoa_don"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Hóa đơn :"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_nhan_vien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Nhân viên :"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+
+        >
+        <Button
+            android:id="@+id/btn_huy_hoa_don_chi_tiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HỦY"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:layout_weight="3"
+            android:backgroundTint="#03A9F4"/>
+        <Button
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_xoa_hoa_don_chi_tiet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="XÓA"
+            android:textSize="20dp"
+            android:backgroundTint="#03A9F4"
+            android:textColor="@color/white"
+            android:layout_weight="3"/>
+    </LinearLayout>
+</LinearLayout>
