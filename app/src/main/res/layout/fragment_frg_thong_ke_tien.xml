@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ThongKe.FragmentTK.frgThongKeTien">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/bodertke2"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="70dp"
+                android:layout_marginVertical="10dp">
+                <ImageView
+                    android:id="@+id/imgCalendar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_calendar"/>
+                <Spinner
+                    android:id="@+id/spCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="20dp"/>
+            </LinearLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:id="@+id/tabLayout"
+                android:background="@drawable/bodertke"
+                app:tabTextColor="#CC2E2E"
+                app:tabIndicatorColor="#0F259F"
+                app:tabSelectedTextColor="#3F51B5"/>
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/viewpage2"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
+
+</FrameLayout>
