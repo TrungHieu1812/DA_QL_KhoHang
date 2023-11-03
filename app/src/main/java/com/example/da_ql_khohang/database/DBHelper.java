@@ -59,7 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO LOAISANPHAM VALUES(1,'ĐỒ ĂN Nhanh')");
         sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,1)");
         sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','5/9/2012',1),(1,1,'admin',5,'1/9/2012','1/9/2012',0)");
-        sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(1,1,18000,15,0,0)");
+        sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(1,1,1,18000,15,0,0)");
     }
 
     @Override
