@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chi tiết nhân viên"
+                android:textSize="20dp"
+                android:fontFamily="@font/roboto"
+                android:textStyle="bold"
+                android:textColor="#22215B"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mã nhân viên : "
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#22215B"/>
+
+            <TextView
+                android:id="@+id/tv_idNv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="1"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Tên nhân viên : "
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#22215B"/>
+            <TextView
+                android:id="@+id/tv_tenNv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Ngọc Hải"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Tài khoản : "
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#22215B"/>
+            <TextView
+                android:id="@+id/tv_tkNv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Haihtnph21513@gmail.com"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Chức vụ : "
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#22215B"/>
+
+            <TextView
+                android:id="@+id/tv_role_nv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="Nhân viên"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại : "
+                android:textSize="16dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#22215B"/>
+
+            <TextView
+                android:id="@+id/tv_sdtNv"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:text="0941889768"
+                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="#000000"
+                />
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnXoa"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:backgroundTint="#567DF4"
+                android:layout_marginLeft="20dp"
+                android:text="XÓA"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
+
+            <Button
+                android:id="@+id/btnCapnhat"
+                android:layout_width="150dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="40dp"
+                android:backgroundTint="#567DF4"
+                android:text="CẬP NHẬT"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>
