@@ -2,20 +2,30 @@ package com.example.da_ql_khohang.ThanhVien;
 
 public class Member_Model {
     private int id_nv;
-    private String ten_nv,tk_nv,mk_nv,role;
-     private int sdt_nv;
-    private String img;
+    private String ten,username,passwd,email,level;
+
     public Member_Model() {
+
     }
 
-    public Member_Model(int id_nv, String ten_nv, String tk_nv, String mk_nv, String role, int sdt_nv, String img) {
+    public Member_Model(int id_nv, String ten, String username, String passwd, String email, String level) {
+        this.ten = ten;
         this.id_nv = id_nv;
-        this.ten_nv = ten_nv;
-        this.tk_nv = tk_nv;
-        this.mk_nv = mk_nv;
-        this.role = role;
-        this.sdt_nv = sdt_nv;
-        this.img = img;
+        this.username = username;
+        this.passwd = passwd;
+        this.email = email;
+        this.level = level;
+    }
+
+    public Member_Model(int id, String tenNv) {
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
     }
 
     public int getId_nv() {
@@ -26,51 +36,35 @@ public class Member_Model {
         this.id_nv = id_nv;
     }
 
-    public String getTen_nv() {
-        return ten_nv;
+    public String getUsername() {
+        return username;
     }
 
-    public void setTen_nv(String ten_nv) {
-        this.ten_nv = ten_nv;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getRole() {
-        return role;
+    public String getPasswd() {
+        return passwd;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
-    public String getTk_nv() {
-        return tk_nv;
+    public String getEmail() {
+        return email;
     }
 
-    public void setTk_nv(String tk_nv) {
-        this.tk_nv = tk_nv;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getMk_nv() {
-        return mk_nv;
+    public String getLevel() {
+        return level;
     }
 
-    public void setMk_nv(String mk_nv) {
-        this.mk_nv = mk_nv;
-    }
-
-    public int getSdt_nv() {
-        return sdt_nv;
-    }
-
-    public void setSdt_nv(int sdt_nv) {
-        this.sdt_nv = sdt_nv;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
+    public void setLevel(String level) {
+        this.level= level;
     }
 }
