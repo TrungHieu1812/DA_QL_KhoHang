@@ -40,14 +40,14 @@
             android:textColor="@color/black"
             android:layout_marginBottom="10dp"/>
         <TextView
-            android:id="@+id/tv_sdt"
+            android:id="@+id/tv_email"
             android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="091234564"
+            android:text="hai@gmail.com"
             android:textColor="@color/black"
             android:fontFamily="@font/roboto"
-            android:textSize="13sp" />
+            android:textSize="17sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

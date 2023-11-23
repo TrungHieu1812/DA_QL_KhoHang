@@ -36,10 +36,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tên thành viên"
+                android:id="@+id/etl_sua_ten_nv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_ten_nv"
+                    android:id="@+id/et_sua_ten_nv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -52,11 +53,12 @@
                     android:layout_marginTop="20dp"
                     android:layout_weight="5"
                     android:hint="Tài khoản"
+                    android:id="@+id/etl_sua_username_nv"
                     android:layout_marginRight="20dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_tk_nv"
+                        android:id="@+id/et_sua_username_nv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -68,12 +70,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_weight="5"
-
+                    android:id="@+id/etl_sua_passwd_nv"
                     android:hint="Mật khẩu"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_mk_nv"
+                        android:id="@+id/et_sua_passwd_nv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -92,34 +94,18 @@
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    app:startIconDrawable="@drawable/ic_phone_foreground"
-                    android:hint="Số điện thoại"
-                    android:layout_marginRight="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_sdt_nv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:layout_marginLeft="10dp"
                     app:startIconDrawable="@drawable/ic_sl"
                     android:hint="Chức vụ"
+                    android:id="@+id/etl_sua_level_nv"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_role_nv"
+                        android:id="@+id/et_sua_level_nv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         />
@@ -136,15 +122,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/ic_image"
-                android:hint="Thêm ảnh"
+                android:hint="Email"
+                android:id="@+id/etl_sua_mail_nv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_img_nv"
+                    android:id="@+id/et_sua_mail_nv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
