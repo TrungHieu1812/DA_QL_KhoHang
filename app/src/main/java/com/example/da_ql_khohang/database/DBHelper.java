@@ -1,4 +1,4 @@
-package com.example.da_ql_khohang.database;
+package com.example.da_ql_khohang.DataBase;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,6 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "giaSP INTEGER," +
                 "soLuong INTEGER," +
                 "soLuuKho INTEGER," +
+                "anhSP TEXT," +
                 "maLoai INTEGER REFERENCES LOAISANPHAM(maLoai))");
 
         // TẠO BẢNG PHIẾU XUẤT / PHIẾU NHẬP
@@ -57,9 +58,9 @@ public class DBHelper extends SQLiteOpenHelper {
         // THÊM DỮ LIỆU MẪU
         sqLiteDatabase.execSQL("INSERT INTO THANHVIEN VALUES('admin','HSAMH','123','admin')");
         sqLiteDatabase.execSQL("INSERT INTO LOAISANPHAM VALUES(1,'ĐỒ ĂN Nhanh')");
-        sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,1)");
-        sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','5/9/2012',1),(1,1,'admin',5,'1/9/2012','1/9/2012',0)");
-        sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(1,1,1,18000,15,0,0)");
+        sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,'',1)");
+        sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','5/9/2012',1),(2,1,'admin',5,'1/9/2012','1/9/2012',0)");
+        sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(2,1,1,18000,15,0,0)");
     }
 
     @Override

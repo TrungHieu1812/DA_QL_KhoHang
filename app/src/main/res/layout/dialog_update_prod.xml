@@ -48,6 +48,12 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/spn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
            <LinearLayout
                android:layout_width="match_parent"
                android:orientation="horizontal"
@@ -66,6 +72,7 @@
                    <com.google.android.material.textfield.TextInputEditText
                        android:id="@+id/ed_price_prod"
                        android:layout_width="match_parent"
+                       android:inputType="number"
                        android:layout_height="wrap_content"
                        />
 
@@ -84,6 +91,7 @@
                        android:id="@+id/ed_qty_prod"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
+                       android:inputType="number"
                        />
 
                </com.google.android.material.textfield.TextInputLayout>
@@ -101,57 +109,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_solkho_prod"
                     android:layout_width="match_parent"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="10"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    app:startIconDrawable="@drawable/ic_calendar"
-                    android:hint="Ngày lưu kho"
-                    android:layout_marginRight="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_ngayLuu_prod"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:layout_marginLeft="10dp"
-                    app:startIconDrawable="@drawable/ic_calendar"
-                    android:hint="Ngày xuất kho"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/ed_ngayXuat_prod"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </LinearLayout>
-
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

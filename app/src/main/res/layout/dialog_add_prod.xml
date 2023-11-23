@@ -47,6 +47,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <Spinner
+                android:layout_marginTop="20dp"
+                android:id="@+id/spn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +71,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/ed_price_prod"
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -79,6 +87,7 @@
                     app:startIconDrawable="@drawable/ic_sl">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="number"
                         android:id="@+id/ed_qty_prod"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -98,25 +107,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_solkho_prod"
                     android:layout_width="match_parent"
+                    android:inputType="number"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="Ngày lưu kho"
-                app:startIconDrawable="@drawable/ic_calendar">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_ngayLuu_prod"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
