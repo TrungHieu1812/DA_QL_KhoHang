@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -25,13 +27,11 @@ import java.util.List;
 
 
 public class Frag_category extends Fragment {
-    static FragCategoryBinding binding;
-
-
-    static List<category_model> cateList;
-    category_Adapter adapter;
-
-    DialogAddCategoryBinding dialogBinding;
+    private FragCategoryBinding binding;
+    private List<category_model> cateList;
+    private category_Adapter adapter;
+    private DialogAddCategoryBinding dialogBinding;
+    private category_DAO dao;
 
     public Frag_category() {
     }
@@ -52,20 +52,7 @@ public class Frag_category extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        cateList = new ArrayList<>();
-
-        category_model cate1 = new category_model(1,"Apple");
-        category_model cate2 = new category_model(2,"SamSung");
-
-        cateList.add(cate1);
-        cateList.add(cate2);
-
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        binding.rcv.setLayoutManager(layoutManager);
-        adapter = new category_Adapter(getActivity(),cateList);
-        adapter.notifyDataSetChanged();
-        binding.rcv.setAdapter(adapter);
+        loadData();
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +62,31 @@ public class Frag_category extends Fragment {
         });
 
 
+        binding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
+    }
+
+    private void loadData() {
+        dao = new category_DAO(getContext());
+        cateList = dao.getDataCate();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        binding.rcv.setLayoutManager(linearLayoutManager);
+        adapter = new category_Adapter(getActivity(),cateList);
+        adapter.notifyDataSetChanged();
+        binding.rcv.setAdapter(adapter);
     }
 
 
@@ -92,7 +104,14 @@ public class Frag_category extends Fragment {
         dialogBinding.btnXacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (dialogBinding.edNameCate.getText().toString().equals("")) {
+                    Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    dao.insertCate(dialogBinding.edNameCate.getText().toString());
+                    Toast.makeText(getContext(), "Thêm loại sách thành công", Toast.LENGTH_SHORT).show();
+                    loadData();
+                    alertDialog.dismiss();
+                }
             }
         });
 

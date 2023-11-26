@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -23,6 +24,7 @@ import com.example.da_ql_khohang.databinding.ItemCategoryBinding;
 import com.example.da_ql_khohang.databinding.ItemProdBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class category_Adapter extends RecyclerView.Adapter<category_Adapter.ViewHolder> implements Filterable {
@@ -31,15 +33,12 @@ public class category_Adapter extends RecyclerView.Adapter<category_Adapter.View
     private Context context;
     private List<category_model> list;
     private List<category_model> list_filter;
+
+    private category_DAO dao;
     public category_Adapter(Context context, List<category_model> list) {
         this.context = context;
         this.list = list;
         this.list_filter = list;
-    }
-
-    @Override
-    public Filter getFilter() {
-        return null;
     }
 
     @NonNull
@@ -65,6 +64,36 @@ public class category_Adapter extends RecyclerView.Adapter<category_Adapter.View
 
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String search = charSequence.toString();
+                if (search.isEmpty()) {
+                    list = list_filter;
+                } else {
+                    ArrayList<category_model> listFilter = new ArrayList<>();
+                    for (category_model cate : list_filter) {
+                        if (cate.getTenLoai().toLowerCase().contains(search)) {
+                            listFilter.add(cate);
+                        }
+                    }
+                    list = listFilter;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = list;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                list = (ArrayList<category_model>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
 
     public void showBottomSheet(int index) {
         BottomsheetCategoryBinding binding;
@@ -80,23 +109,51 @@ public class category_Adapter extends RecyclerView.Adapter<category_Adapter.View
         binding.tvTenLoai.setText(list.get(index).getTenLoai());
         binding.tvMaLoai.setText(String.valueOf(list.get(index).getId()));
 
+
         binding.btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bottomSheetDialog.dismiss();
+                showDelete(index,bottomSheetDialog);
             }
         });
 
         binding.btnCapnhat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog();
+                showDialogUpdate(index,bottomSheetDialog);
             }
         });
     }
 
+    private void showDelete(int position,BottomSheetDialog BSDialog) {
+        dao = new category_DAO(context);
+        int check = dao.deleteCate(list.get(position).getId());
+        switch (check) {
+            case 1: //load lại danh sách
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn có chắc chắn muốn xóa ?");
+                builder.setIcon(R.drawable.baseline_warning_24);
+                builder.setNegativeButton("Có", (dialog, which) -> {
+                    list.clear();
+                    list = dao.getDataCate();
+                    notifyDataSetChanged();
+                    BSDialog.dismiss();
+                });
+                builder.setPositiveButton("Không", null);
+                builder.show();
+                break;
+            case -1: // có sách tồn tại
+                Toast.makeText(context, "Không thể xóa loại SP này vì đã có SP thuộc thể loại này", Toast.LENGTH_SHORT).show();
+                break;
+            case 0:
+                Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 
-    private void showDialog() {
+
+    private void showDialogUpdate(int position,BottomSheetDialog BSDialog) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         LayoutInflater inflater = ((Activity) context).getLayoutInflater();
@@ -107,10 +164,28 @@ public class category_Adapter extends RecyclerView.Adapter<category_Adapter.View
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+        dialogBinding.edNameCate.setText(list.get(position).getTenLoai());
+
         dialogBinding.btnXacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String tenLoai = dialogBinding.edNameCate.getText().toString();
+                int id = list.get(position).getId();
+                category_model cate = new category_model(id, tenLoai);
+                dao = new category_DAO(context);
+                if (tenLoai.isEmpty()) { //tenLoai.matches("[a-zA-Z ]+")
+                    Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (dao.updateCate(cate)) {
+                        list = dao.getDataCate();
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Update loại SP Thành công", Toast.LENGTH_SHORT).show();
+                        alertDialog.dismiss();
+                        BSDialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Update loại SP Thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
@@ -123,6 +198,8 @@ public class category_Adapter extends RecyclerView.Adapter<category_Adapter.View
         });
 
     }
+
+
 
 
     @Override

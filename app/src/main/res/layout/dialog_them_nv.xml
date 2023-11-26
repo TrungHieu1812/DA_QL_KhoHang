@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:padding="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="10dp"
-    android:padding="1dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
@@ -23,10 +22,9 @@
 
 
             <TextView
-                android:id="@+id/tvReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="UPDATE SẢN PHẨM"
+                android:text="Thêm thành viên"
                 android:textAlignment="center"
                 android:textColor="#567DF4"
                 android:textSize="36sp"
@@ -37,95 +35,97 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên sản phẩm"
+                android:hint="Tên thành viên"
+                android:id="@+id/etl_them_ten_nv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_name_prod"
+                    android:id="@+id/et_them_ten_nv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Spinner
-                android:layout_marginTop="20dp"
-                android:id="@+id/spn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:orientation="horizontal"
-               android:layout_weight="10"
-               android:layout_marginTop="20dp"
-               android:layout_height="wrap_content">
-
-               <com.google.android.material.textfield.TextInputLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="5"
-                   android:hint="Giá bán"
-                   android:layout_marginRight="20dp"
-                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                   <com.google.android.material.textfield.TextInputEditText
-                       android:id="@+id/ed_price_prod"
-                       android:layout_width="match_parent"
-                       android:inputType="number"
-                       android:layout_height="wrap_content"
-                       />
-
-               </com.google.android.material.textfield.TextInputLayout>
-
-               <com.google.android.material.textfield.TextInputLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_weight="5"
-                   app:startIconDrawable="@drawable/ic_sl"
-                   android:layout_marginLeft="20dp"
-                   android:hint="Số lượng"
-                   style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                   <com.google.android.material.textfield.TextInputEditText
-                       android:id="@+id/ed_qty_prod"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:inputType="number"
-                       />
-
-               </com.google.android.material.textfield.TextInputLayout>
-
-
-           </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Số lưu kho"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_solkho_prod"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:inputType="number"
                     android:layout_height="wrap_content"
-                    />
+                    android:layout_marginTop="20dp"
+                    android:hint="Tài khoản"
+                    android:id="@+id/etl_them_username_nv"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_them_username_nv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="5"
+                    android:id="@+id/etl_them_passwd_nv"
+                    android:hint="Mật khẩu"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_them_passwd_nv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="10"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:id="@+id/etl_them_level_nv"
+                    app:startIconDrawable="@drawable/ic_sl"
+                    android:hint="Chức vụ"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_them_level_nv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/ic_image"
-                android:hint="Thêm ảnh"
+                android:hint="Email"
+                android:id="@+id/etl_them_email_nv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
+<!--            lần sau nhớ thêm img mail vào đây-->
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_img_prod"
+                    android:id="@+id/et_them_email_nv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     />
@@ -140,7 +140,7 @@
 
                 <Button
                     android:id="@+id/btnHuy"
-                    android:layout_width="150dp"
+                    android:layout_width="140dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
                     android:backgroundTint="#567DF4"
@@ -150,7 +150,7 @@
 
                 <Button
                     android:id="@+id/btnXacnhan"
-                    android:layout_width="150dp"
+                    android:layout_width="140dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginTop="20dp"
@@ -169,3 +169,4 @@
 
 
 </LinearLayout>
+
