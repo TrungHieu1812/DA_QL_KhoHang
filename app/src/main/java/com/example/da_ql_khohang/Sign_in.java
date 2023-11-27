@@ -27,6 +27,7 @@ public class Sign_in extends AppCompatActivity {
                 if (user.isEmpty() || pass.isEmpty()){
                     Toast.makeText(Sign_in.this, "Tên đăng nhập và mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
                 }else{
+                    Toast.makeText(Sign_in.this, "Tên đăng nhập và mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -16,9 +16,11 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // TẠO BẢNG THÀNH VIÊN
-        sqLiteDatabase.execSQL("CREATE TABLE THANHVIEN (maTV INTEGER PRIMARY KEY AUTOINCREMENT, " + "ten TEXT, "+
+        sqLiteDatabase.execSQL("CREATE TABLE THANHVIEN (maTV INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ten TEXT, "+
                 "userName TEXT," +
-                "passWord TEXT," +"email TEXT,"+
+                "passWord TEXT," +
+                "email TEXT,"+
                 "level TEXT)");
 
         // TẠO BẢNG LOẠI SẢN PHẨM
