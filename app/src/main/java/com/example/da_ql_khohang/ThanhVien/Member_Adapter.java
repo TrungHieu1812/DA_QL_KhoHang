@@ -116,6 +116,7 @@ public class Member_Adapter extends RecyclerView.Adapter<Member_Adapter.ViewHold
                                 list.clear();
                                 list = dao.getAll_mem();
                                 notifyDataSetChanged();
+                                Toast.makeText(context, "Xoá thành công", Toast.LENGTH_SHORT).show();
                                 bsdialog.dismiss();
                             }
                         });
@@ -158,12 +159,18 @@ public class Member_Adapter extends RecyclerView.Adapter<Member_Adapter.ViewHold
            String level_nv = nvBinding.etSuaLevelNv.getText().toString();
           String email_nv = nvBinding.etSuaMailNv.getText().toString();
 
-           Member_Model member = new Member_Model();
+           Member_Model member = list.get(position);
            dao = new Member_DAO(context);
            if (ten_nv.isEmpty() || username_nv.isEmpty() || passwd_nv.isEmpty() || level_nv.isEmpty() || email_nv.isEmpty() ) {
                Toast.makeText(context, "Không được để trống", Toast.LENGTH_SHORT).show();
            } else {
-              if(dao.update_mem(member)>0){
+               member.setTen(ten_nv);
+               member.setUsername(username_nv);
+               member.setPasswd(passwd_nv);
+               member.setEmail(email_nv);
+               member.setLevel(level_nv);
+              if(dao.update_mem(member) != -1){
+                  list.clear();
                   list = dao.getAll_mem();
                   notifyDataSetChanged();
                   bsdialog.dismiss();

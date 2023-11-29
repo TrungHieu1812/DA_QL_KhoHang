@@ -46,24 +46,24 @@ public class Member_DAO {
         values.put("ten",member.getTen());
         values.put("userName",member.getUsername() );
         values.put("passWord",member.getPasswd());
-        values.put("level",member.getLevel());
         values.put("email",member.getEmail());
+        values.put("level",member.getLevel());
 
 
        return db.insert("THANHVIEN",null,values);
 
     }
-    public int update_mem(Member_Model member){
+    public long update_mem(Member_Model member){
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("ten",member.getTen());
         values.put("userName",member.getUsername() );
         values.put("passWord",member.getPasswd());
-        values.put("level",member.getLevel());
         values.put("email",member.getEmail());
+        values.put("level",member.getLevel());
 
-        return db.update("THANHVIEN",values,"maTV=?",new String[]{member.getId_nv()+""});
+        return db.update("THANHVIEN",values,"maTV=?",new String[]{String.valueOf(member.getId_nv())});
     }
 
     public int delete_mem(int id){
@@ -74,4 +74,11 @@ public class Member_DAO {
 
     }
 
+    public boolean checkLogin(String user, String pass) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        Cursor cursor= sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN where maTV = ? and userName = ? and passWord = ?",
+                new String [] {user, pass});
+        int row = cursor.getCount();
+        return (row >= 0);
+    }
 }
