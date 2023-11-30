@@ -1,9 +1,12 @@
 package com.example.da_ql_khohang.ThongKe.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.da_ql_khohang.SanPham.Product_DAO;
+import com.example.da_ql_khohang.SanPham.Product_model;
 import com.example.da_ql_khohang.ThongKe.Top;
 import com.example.da_ql_khohang.database.DBHelper;
 
@@ -23,33 +26,36 @@ public class ThongKeDao {
         db = dbHelper.getWritableDatabase();
     }
 
+    @SuppressLint("Range")
     public List<Top> getSoLuongNhap(){
         String sqlTop = "select maSP, count(soLuong) as soluong from phieu where loai=0 group by maSP ";
         List<Top> list = new ArrayList<>();
-//        SanPhamDao spDao = new SanPhamDao(context);
+        Product_DAO spDao = new Product_DAO(context);
         Cursor cursor = db.rawQuery(sqlTop,null);
         while (cursor.moveToNext()){
             Top top = new Top();
-//            SanPham sp = spDao.getID(cursor.getString(cursor.getColumnIndex("maSP")));
-//            top.setTenSanPham(s.getTenSanPham());
+             Product_model sp = spDao.getProdById(cursor.getInt(cursor.getColumnIndex("maSP")));
+            top.setTen(sp.getTenSP());
             top.setSoluong(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soluong"))));
             list.add(top);
         }
         return list;
     }
-}
+
+    @SuppressLint("Range")
     public List<Top> getSoLuongXuat(){
         String sqlTop = "select maSP, count(soLuong) as soluong from phieu where loai=1 group by maSP ";
         List<Top> list = new ArrayList<>();
-//        SanPhamDao spDao = new SanPhamDao(context);
+        Product_DAO spDao = new Product_DAO(context);
         Cursor cursor = db.rawQuery(sqlTop,null);
         while (cursor.moveToNext()){
             Top top = new Top();
-//            SanPham sp = spDao.getID(cursor.getString(cursor.getColumnIndex("maSP")));
-//            top.setTenSanPham(s.getTenSanPham());
+            Product_model sp = spDao.getProdById(cursor.getInt(cursor.getColumnIndex("maSP")));
+            top.setTen(sp.getTenSP());
             top.setSoluong(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soluong"))));
             list.add(top);
         }
         return list;
     }
+
 }

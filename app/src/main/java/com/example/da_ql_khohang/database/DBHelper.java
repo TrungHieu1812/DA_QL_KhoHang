@@ -1,4 +1,4 @@
-package com.example.da_ql_khohang.DataBase;
+package com.example.da_ql_khohang.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
