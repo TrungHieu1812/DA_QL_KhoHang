@@ -30,8 +30,8 @@ public class Frag_member extends Fragment {
     static List<Member_Model> nv_list;
     Member_DAO memberDao;
     Member_Adapter adapter;
-  //  DialogThemNvBinding dialogBinding;
-  RecyclerView rcv_nv;
+    //  DialogThemNvBinding dialogBinding;
+    RecyclerView rcv_nv;
     public Frag_member() {
     }
 
@@ -88,7 +88,7 @@ public class Frag_member extends Fragment {
         Button btnHuy = dialog.findViewById(R.id.btnHuy);
 
 
-dialog.show();
+        dialog.show();
 
         btnXacnhan.setOnClickListener(new View.OnClickListener() {
             @Override

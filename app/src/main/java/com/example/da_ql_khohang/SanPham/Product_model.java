@@ -7,23 +7,32 @@ public class Product_model {
     private int giaBan;
     private int soLuong;
     private int soLuuKho;
-    private String ngayLuuKho;
-    private String ngayXuatKho;
     private String img;
+
+    private int maLoai;
+
 
     public Product_model() {
     }
 
-    public Product_model(int id, String tenSP, int giaBan, int soLuong, int soLuuKho, String ngayLuuKho, String ngayXuatKho, String img) {
+    public Product_model(int id,String tenSP, int giaBan, int soLuong, int soLuuKho, String img, int maLoai) {
         this.id = id;
         this.tenSP = tenSP;
         this.giaBan = giaBan;
         this.soLuong = soLuong;
         this.soLuuKho = soLuuKho;
-        this.ngayLuuKho = ngayLuuKho;
-        this.ngayXuatKho = ngayXuatKho;
         this.img = img;
+        this.maLoai = maLoai;
     }
+
+    public int getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
+    }
+
 
     public int getId() {
         return id;
@@ -65,21 +74,6 @@ public class Product_model {
         this.soLuuKho = soLuuKho;
     }
 
-    public String getNgayLuuKho() {
-        return ngayLuuKho;
-    }
-
-    public void setNgayLuuKho(String ngayLuuKho) {
-        this.ngayLuuKho = ngayLuuKho;
-    }
-
-    public String getNgayXuatKho() {
-        return ngayXuatKho;
-    }
-
-    public void setNgayXuatKho(String ngayXuatKho) {
-        this.ngayXuatKho = ngayXuatKho;
-    }
 
     public String getImg() {
         return img;

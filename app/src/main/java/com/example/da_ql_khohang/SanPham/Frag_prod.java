@@ -1,42 +1,43 @@
 package com.example.da_ql_khohang.SanPham;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RemoteViews;
+import android.widget.AdapterView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.da_ql_khohang.R;
-import com.example.da_ql_khohang.databinding.BottomsheetProdBinding;
+import com.example.da_ql_khohang.TheLoai.category_DAO;
+import com.example.da_ql_khohang.TheLoai.category_model;
 import com.example.da_ql_khohang.databinding.DialogAddProdBinding;
 import com.example.da_ql_khohang.databinding.FragProdBinding;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class Frag_prod extends Fragment {
-    static FragProdBinding binding;
+    private FragProdBinding binding;
 
-    static List<Product_model> prodList;
-     prod_Adapter adapter;
+    private List<Product_model> prodList;
+    private prod_Adapter adapter;
 
-     DialogAddProdBinding dialogBinding;
+    private DialogAddProdBinding dialogBinding;
+
+    private Product_DAO dao;
+
 
     public Frag_prod() {
     }
@@ -57,22 +58,7 @@ public class Frag_prod extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        prodList = new ArrayList<>();
-
-        Product_model prods = new Product_model(
-                1,"iphone 15",25000,1200,7462,"18/12/2023","20/12/2023","https://hoanghamobile.com/Uploads/2023/09/13/iphone-15-pink-pure-back-iphone-15-pink-pure-front-2up-screen-usen.png");
-        Product_model prod2 = new Product_model(
-                2,"iphone 15",25000,1200,7462,"18/12/2023","20/12/2023","https://hoanghamobile.com/Uploads/2023/09/13/iphone-15-pink-pure-back-iphone-15-pink-pure-front-2up-screen-usen.png");
-
-        prodList.add(prods);
-        prodList.add(prod2);
-
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        binding.rcv.setLayoutManager(layoutManager);
-        adapter = new prod_Adapter(getActivity(),prodList);
-        adapter.notifyDataSetChanged();
-        binding.rcv.setAdapter(adapter);
+        loadData();
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +68,33 @@ public class Frag_prod extends Fragment {
         });
 
 
+        binding.searchBar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+
     }
 
+
+    private void loadData() {
+        dao = new Product_DAO(getContext());
+        prodList = dao.getAllProduct();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        binding.rcv.setLayoutManager(linearLayoutManager);
+        adapter = new prod_Adapter(getActivity(),prodList,getLoaiSP(),dao);
+        adapter.notifyDataSetChanged();
+        binding.rcv.setAdapter(adapter);
+    }
 
 
 
@@ -98,10 +109,42 @@ public class Frag_prod extends Fragment {
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
+        SimpleAdapter simpleAdapter = new SimpleAdapter(
+                getContext(),
+                getLoaiSP(),
+                android.R.layout.simple_spinner_item,
+                new String[]{"tenLoai"},
+                new int[]{android.R.id.text1});
+
+        dialogBinding.spn.setAdapter(simpleAdapter);
+
         dialogBinding.btnXacnhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String tensp = dialogBinding.edNameProd.getText().toString();
+                String giasp = dialogBinding.edPriceProd.getText().toString();
+                String soluong = dialogBinding.edQtyProd.getText().toString();
+                String soLuuKho = dialogBinding.edSolkhoProd.getText().toString();
+                String anhSP = dialogBinding.edImgProd.getText().toString();
+                HashMap<String, Object> hs = (HashMap<String, Object>) dialogBinding.spn.getSelectedItem();
+                int maloai = (int) hs.get("maLoai");
 
+
+
+                if (tensp.isEmpty() || giasp.isEmpty() || soluong.isEmpty() || soLuuKho.isEmpty()) {
+                    Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                } else {
+                    boolean check = dao.insertProd(
+                            tensp,Integer.parseInt(giasp),Integer.parseInt(soluong),Integer.parseInt(soLuuKho),anhSP, maloai
+                    );
+                    if (check) {
+                        Toast.makeText(getContext(), "Thêm SP thành công", Toast.LENGTH_SHORT).show();
+                        loadData();
+                    } else {
+                        Toast.makeText(getContext(), "Thêm SP Thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                    alertDialog.dismiss();
+                }
             }
         });
 
@@ -113,6 +156,21 @@ public class Frag_prod extends Fragment {
             }
         });
 
+    }
+
+
+
+    public ArrayList<HashMap<String, Object>> getLoaiSP() {
+        category_DAO cate_DAO = new category_DAO(getContext());
+        ArrayList<category_model> list = cate_DAO.getDataCate();
+        ArrayList<HashMap<String, Object>> listHM = new ArrayList<>();
+        for (category_model loai : list) {
+            HashMap<String, Object> hs = new HashMap<>();
+            hs.put("maLoai", loai.getId());
+            hs.put("tenLoai", loai.getTenLoai());
+            listHM.add(hs);
+        }
+        return listHM;
     }
 
 
