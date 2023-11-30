@@ -4,9 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.da_ql_khohang.DataBase.DBHelper;
+import com.example.da_ql_khohang.database.DBHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Member_DAO {
     DBHelper dbHelper;
@@ -74,11 +75,13 @@ public class Member_DAO {
 
     }
 
-    public boolean checkLogin(String user, String pass) {
+    public int checkLogin(String user, String pass) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        Cursor cursor= sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN where maTV = ? and userName = ? and passWord = ?",
+        Cursor cursor= sqLiteDatabase.rawQuery("SELECT * FROM THANHVIEN where userName = ? and passWord = ?",
                 new String [] {user, pass});
-        int row = cursor.getCount();
-        return (row >= 0);
+        if (cursor.getCount() == 0) {
+            return -1;
+        }
+        return 1;
     }
 }
