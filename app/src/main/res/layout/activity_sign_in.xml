@@ -15,36 +15,63 @@
             android:layout_height="300dp"
             android:background="@drawable/sign_in"/>
 
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="YOUR USERNAME"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:textStyle="normal"-->
+<!--            android:textColor="#888888"-->
+<!--            android:textSize="15dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tvUser"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:background="@drawable/form"-->
+<!--            android:padding="15dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.505"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="YOUR USERNAME"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:textStyle="normal"
             android:textColor="#888888"
             android:textSize="15dp"/>
 
-        <TextView
-            android:id="@+id/tvUser"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/form"
-            android:padding="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+            android:layout_marginBottom="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/form"
+                android:padding="15dp"
+                android:maxLines="1"
+                android:text=""/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PASSWORD"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textStyle="normal"
             android:textColor="#888888"
             android:textSize="15dp"/>
@@ -99,6 +126,7 @@
             android:textSize="15dp"/>
 
         <TextView
+            android:id="@+id/tvSign_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SIGN UP"

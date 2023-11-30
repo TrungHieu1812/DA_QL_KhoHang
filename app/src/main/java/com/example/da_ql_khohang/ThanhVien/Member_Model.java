@@ -8,6 +8,14 @@ public class Member_Model {
 
     }
 
+    public Member_Model(String ten, String username, String passwd, String email, String level) {
+        this.ten = ten;
+        this.username = username;
+        this.passwd = passwd;
+        this.email = email;
+        this.level = level;
+    }
+
     public Member_Model(int id_nv, String ten, String username, String passwd, String email, String level) {
         this.ten = ten;
         this.id_nv = id_nv;
