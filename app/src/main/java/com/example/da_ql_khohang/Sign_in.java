@@ -40,7 +40,7 @@ public class Sign_in extends AppCompatActivity {
                     Toast.makeText(Sign_in.this, "Tên đăng nhập và mật khẩu không được để trống", Toast.LENGTH_SHORT).show();
                 }else{
                     memberDao = new Member_DAO(Sign_in.this);
-                    if (memberDao.checkLogin(user, pass)){
+                    if (memberDao.checkLogin(user, pass) == 1){
                         startActivity(new Intent(Sign_in.this, MainActivity.class));
                         Toast.makeText(Sign_in.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     }else{

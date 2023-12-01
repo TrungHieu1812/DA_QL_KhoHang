@@ -1,4 +1,4 @@
-package com.example.da_ql_khohang.DataBase;
+package com.example.da_ql_khohang.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -59,8 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // THÊM DỮ LIỆU MẪU
         sqLiteDatabase.execSQL("INSERT INTO THANHVIEN VALUES(1,'Ngọc Hải','admin123','123','hai@gmail.com','admin')");
-        sqLiteDatabase.execSQL("INSERT INTO LOAISANPHAM VALUES(1,'ĐỒ ĂN Nhanh')");
-        sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,1)");
+        sqLiteDatabase.execSQL("INSERT INTO LOAISANPHAM VALUES(1,'Đồ Ăn Nhanh')");
         sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,'',1)");
         sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','5/9/2012',1),(2,1,'admin',5,'1/9/2012','1/9/2012',0)");
         sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(2,1,1,18000,15,0,0)");

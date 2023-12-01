@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.da_ql_khohang.DataBase.DBHelper;
+import com.example.da_ql_khohang.database.DBHelper;
 import com.example.da_ql_khohang.TheLoai.category_model;
 
 import java.util.ArrayList;
