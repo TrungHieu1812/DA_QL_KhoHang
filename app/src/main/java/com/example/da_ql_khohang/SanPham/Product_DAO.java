@@ -97,13 +97,15 @@ public class Product_DAO {
     public Product_model getProdById(int id) {
         prod = new Product_model();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM SANPHAM WHERE id = ?", new String[]{String.valueOf(id)});
+        Cursor c = db.rawQuery("SELECT * FROM SANPHAM WHERE maSP = ?", new String[]{String.valueOf(id)});
         if (c.getCount() != 0) {
             c.moveToFirst();
             prod.setId(c.getInt(0));
             prod.setTenSP(c.getString(1));
+            prod.setGiaBan(c.getInt(2));
+            return prod;
         }
-        return prod;
+        return null;
     }
 
 
