@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="20dp">
     <TextView
@@ -14,43 +15,26 @@
         android:textAllCaps="true"
         android:layout_gravity="center"
         />
-    
+
+
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mã hóa dơn"
+        android:text="mã nhân viên"
         android:textStyle="bold"
         android:textColor="#03A9F4"
         android:textSize="20dp"
         android:textAllCaps="true"
         android:layout_gravity="start"
         />
-    <TextView
-        android:id="@+id/tv_ma_hoa_don"
+    <EditText
+        android:id="@+id/ed_ma_nhan_vien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="20dp"
-        android:hint="text1"/>
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mã nhân vien"
-        android:textStyle="bold"
-        android:textColor="#03A9F4"
-        android:textSize="20dp"
-        android:textAllCaps="true"
-        android:layout_gravity="start"
-        />
-    <TextView
-        android:id="@+id/tv_ma_nhan_vien"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:hint="text2"/>
+        android:hint="Mã thành viên"/>
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
@@ -62,14 +46,11 @@
         android:textAllCaps="true"
         android:layout_gravity="start"
         />
-   <EditText
-       android:id="@+id/ed_loai_hoa_don"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="nhập /xuất"
-       android:textSize="20dp"
-       android:textAllCaps="true"
-       />
+    <Spinner
+
+        android:id="@+id/spn_trangthai"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
@@ -81,18 +62,52 @@
         android:textAllCaps="true"
         android:layout_gravity="start"
         />
-    <EditText
-        android:id="@+id/ed_them_san_pham"
+    <Spinner
+
+        android:id="@+id/spn_sp"
         android:layout_width="match_parent"
+        android:layout_height="50dp" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="chọn sản phẩm"
+        android:text="Số lượng"
+        android:textStyle="bold"
+        android:textColor="#03A9F4"
         android:textSize="20dp"
         android:textAllCaps="true"
+        android:layout_gravity="start"
         />
-  <androidx.recyclerview.widget.RecyclerView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/item_san_pham"/>
+
+
+    <EditText
+        android:id="@+id/ed_sl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:hint="Số lượng"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kho luu trữ"
+        android:textStyle="bold"
+        android:textColor="#03A9F4"
+        android:textSize="20dp"
+        android:textAllCaps="true"
+        android:layout_gravity="start"
+        />
+
+
+    <EditText
+        android:id="@+id/ed_ngay_xuat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:hint="Kho lưu trữ"/>
+
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -102,7 +117,7 @@
         >
         <Button
             android:id="@+id/btn_huy_hoa_don"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="HỦY"
             android:textSize="20dp"
@@ -112,11 +127,11 @@
         <Button
             android:layout_marginLeft="20dp"
             android:id="@+id/btn_xac_nhan_hoa_don"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="XÁC NHẬN"
             android:textSize="20dp"
-           android:backgroundTint="#03A9F4"
+            android:backgroundTint="#03A9F4"
             android:textColor="@color/white"
             android:layout_weight="3"/>
     </LinearLayout>

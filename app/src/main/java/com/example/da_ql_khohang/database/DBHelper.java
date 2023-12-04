@@ -10,17 +10,17 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "QLKH";
 
     public DBHelper(@Nullable Context context) {
-        super(context, DB_NAME, null , 3);
+        super(context, DB_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         // TẠO BẢNG THÀNH VIÊN
         sqLiteDatabase.execSQL("CREATE TABLE THANHVIEN (maTV INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "ten TEXT, "+
+                "ten TEXT, " +
                 "userName TEXT," +
                 "passWord TEXT," +
-                "email TEXT,"+
+                "email TEXT," +
                 "level TEXT)");
 
         // TẠO BẢNG LOẠI SẢN PHẨM
@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "ngay TEXT," +
                 "khoLuuTru TEXT," +
                 "loaiPhieu INTEGER)"); // loại phiếu để 0 : phiếu nhập
-                                        // loại phiếu để 1 : phiếu xuất
+        // loại phiếu để 1 : phiếu xuất
 
         // TẠO BẢNG CHI TIẾT PHIẾU NHẬP/ XUẤT
         sqLiteDatabase.execSQL("CREATE TABLE CHITIETPHIEU (IDchiTiet INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -54,20 +54,20 @@ public class DBHelper extends SQLiteOpenHelper {
                 "soLuong INTEGER," +
                 "giamGia INTEGER," +
                 "loai INTEGER)"); // loại để 0 : chi tiết phiếu nhập
-                                // loại để 1 : chi tiết phiếu xuất
+        // loại để 1 : chi tiết phiếu xuất
 
 
         // THÊM DỮ LIỆU MẪU
         sqLiteDatabase.execSQL("INSERT INTO THANHVIEN VALUES(1,'Ngọc Hải','admin123','123','hai@gmail.com','admin')");
         sqLiteDatabase.execSQL("INSERT INTO LOAISANPHAM VALUES(1,'Đồ Ăn Nhanh')");
         sqLiteDatabase.execSQL("INSERT INTO SANPHAM VALUES(1,'Hamboger',20000,15,5678,'',1)");
-        sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','5/9/2012',1),(2,1,'admin',5,'1/9/2012','1/9/2012',0)");
+        sqLiteDatabase.execSQL("INSERT INTO PHIEU VALUES(1,1,'admin',5,'5/9/2012','Ha noi',1),(2,1,'admin',5,'1/9/2012','Hai phong',0)");
         sqLiteDatabase.execSQL("INSERT INTO CHITIETPHIEU VALUES(1,1,1,22000,10,10,1),(2,1,1,18000,15,0,0)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        if (i != i1){
+        if (i != i1) {
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS THANHVIEN");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS LOAISANPHAM");
             sqLiteDatabase.execSQL("DROP TABLE IF EXISTS SANPHAM");
