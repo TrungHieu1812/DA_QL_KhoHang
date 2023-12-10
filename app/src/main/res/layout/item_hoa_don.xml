@@ -2,64 +2,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp"
+    android:layout_margin="5dp"
     android:orientation="vertical"
     >
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_margin="7dp"
-        >
+        android:orientation="vertical"
+        android:background="#D4FAF0">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="mã hóa đơn"
             android:id="@+id/tv_ma_hoa_don"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@drawable/mau_khung_item"/>
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="mã Nhân viên"
+
+            android:hint="Mã hóa đơn"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <TextView
             android:id="@+id/tv_ma_nhan_vien"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@drawable/mau_khung_item"/>
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ngày xuat hoa don"
-            android:id="@+id/tv_ngay_xuat_hoa_don"
+
+            android:hint="Tên sản Phẩm"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            android:background="@drawable/mau_khung_item"/>
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_ngay_xuat_hoa_don"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="Ngày xuất hóa đơn"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textColor="@color/black"
-                android:textSize="20dp"/>
+                android:textSize="20dp" />
+
             <TextView
+                android:id="@+id/tv_gia_tien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="gia tiền"
                 android:layout_weight="4"
-                android:id="@+id/tv_gia_tien"
+
+                android:hint="Gia tiền"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:background="@drawable/mau_khung_item"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
 
-    </LinearLayout>
+</LinearLayout>
 
