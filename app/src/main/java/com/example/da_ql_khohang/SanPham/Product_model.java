@@ -10,7 +10,15 @@ public class Product_model {
     private String img;
 
     private int maLoai;
+    private int tongsl;
 
+    public int getTongsl() {
+        return tongsl;
+    }
+
+    public void setTongsl(int tongsl) {
+        this.tongsl = tongsl;
+    }
 
     public Product_model() {
     }
