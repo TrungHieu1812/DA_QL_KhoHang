@@ -6,52 +6,137 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ThongKe.FragmentTK.frgThongKeTien">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="10dp"
-            android:background="@drawable/bodertke2"
-            android:layout_marginTop="20dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvTonghop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textColor="#2196F3"
+                android:textSize="20dp"
+                android:text="Tổng : "/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="70dp"
-                android:layout_marginVertical="10dp">
-                <ImageView
-                    android:id="@+id/imgCalendar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/icon_calendar"/>
-                <Spinner
-                    android:id="@+id/spCalendar"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="20dp"/>
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btnSoLieu"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="Số Liệu"
+                    android:layout_gravity="center_vertical" />
+                <Button
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/btnBieuDo"
+                    android:text="Biểu đồ"
+                    android:layout_gravity="center_vertical" />
             </LinearLayout>
-
-            <com.google.android.material.tabs.TabLayout
+            <LinearLayout
+                android:id="@+id/llSoLieu"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:id="@+id/tabLayout"
-                android:background="@drawable/bodertke"
-                app:tabTextColor="#CC2E2E"
-                app:tabIndicatorColor="#0F259F"
-                app:tabSelectedTextColor="#3F51B5"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginHorizontal="10dp"
+                    android:background="@drawable/bodertke2"
+                    android:layout_marginTop="20dp">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/viewpage2"
-            android:layout_marginTop="20dp"/>
-    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="70dp"
+                        android:layout_marginVertical="10dp">
+                        <ImageView
+                            android:id="@+id/imgCalendar"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/icon_calendar"/>
+                        <Spinner
+                            android:id="@+id/spCalendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginHorizontal="20dp"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:id="@+id/tabLayout"
+                        android:background="@drawable/bodertke"
+                        app:tabTextColor="#CC2E2E"
+                        app:tabIndicatorColor="#0F259F"
+                        app:tabSelectedTextColor="#3F51B5"/>
+                </LinearLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/viewpage2"
+                    android:layout_marginTop="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llThongKe"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvDoanhThuNhap"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"
+                    android:textSize="20dp"
+                    android:text="Tổng : "/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/chartNhap"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"/>
+                <TextView
+                    android:id="@+id/tvDoanhThuXuat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"
+                    android:textSize="20dp"
+                    android:text="Tổng : "/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/chartXuat"
+                    android:layout_width="400dp"
+                    android:layout_height="400dp"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

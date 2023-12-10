@@ -4,10 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 import com.example.da_ql_khohang.SanPham.Product_DAO;
 import com.example.da_ql_khohang.SanPham.Product_model;
-import com.example.da_ql_khohang.ThongKe.Top;
+import com.example.da_ql_khohang.ThongKe.ThongKe_model;
 import com.example.da_ql_khohang.database.DBHelper;
 
 import java.text.SimpleDateFormat;
@@ -26,36 +27,71 @@ public class ThongKeDao {
         db = dbHelper.getWritableDatabase();
     }
 
-    @SuppressLint("Range")
-    public List<Top> getSoLuongNhap(){
-        String sqlTop = "select maSP, count(soLuong) as soluong from phieu where loai=0 group by maSP ";
-        List<Top> list = new ArrayList<>();
-        Product_DAO spDao = new Product_DAO(context);
-        Cursor cursor = db.rawQuery(sqlTop,null);
-        while (cursor.moveToNext()){
-            Top top = new Top();
-             Product_model sp = spDao.getProdById(cursor.getInt(cursor.getColumnIndex("maSP")));
-            top.setTen(sp.getTenSP());
-            top.setSoluong(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soluong"))));
-            list.add(top);
+
+    public List<ThongKe_model> getTKSL(int loaiPhieu) {
+        db = dbHelper.getReadableDatabase();
+        List<ThongKe_model> list = new ArrayList<>();
+        String query = "SELECT sp.tenSP, sp.anhSP, SUM(p.soLuong) as tongSoLuong " +
+                "FROM PHIEU p " +
+                "JOIN SANPHAM sp ON p.maSP = sp.maSP " +
+                "WHERE p.loaiPhieu = ?" +
+                "GROUP BY p.maSP";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(loaiPhieu)});
+        if (cursor.moveToFirst()) { // Di chuyển con trỏ đến hàng đầu tiên
+            do {
+                ThongKe_model tk = new ThongKe_model();
+                tk.setTensp(cursor.getString(0));
+                String uriString = cursor.getString(1);
+                if (uriString != null) {
+                    Uri uri = Uri.parse(uriString);
+                    tk.setHinhsp(uri);
+                }
+                tk.setSoLuong(cursor.getInt(2));
+                list.add(tk);
+            } while (cursor.moveToNext()); // Di chuyển con trỏ đến hàng tiếp theo
         }
+        cursor.close(); // Đóng Cursor sau khi sử dụng
+        return list;
+    }
+    public List<ThongKe_model> getTKTien(int loaiPhieu) {
+        db = dbHelper.getReadableDatabase();
+        List<ThongKe_model> list = new ArrayList<>();
+        String query = "SELECT sp.tenSP, sp.anhSP, SUM(p.soLuong * sp.giaSP) as tongTien " +
+                "FROM SANPHAM sp " +
+                "JOIN PHIEU p ON sp.maSP = p.maSP " +
+                "WHERE p.loaiPhieu = ?" +
+                "GROUP BY p.maSP";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(loaiPhieu)});
+        if (cursor.moveToFirst()) { // Di chuyển con trỏ đến hàng đầu tiên
+            do {
+                ThongKe_model tk = new ThongKe_model();
+                tk.setTensp(cursor.getString(0));
+                String uriString = cursor.getString(1);
+                if (uriString != null) {
+                    Uri uri = Uri.parse(uriString);
+                    tk.setHinhsp(uri);
+                }
+                tk.setTongTien(cursor.getLong(2));
+                list.add(tk);
+            } while (cursor.moveToNext()); // Di chuyển con trỏ đến hàng tiếp theo
+        }
+        cursor.close(); // Đóng Cursor sau khi sử dụng
         return list;
     }
 
-    @SuppressLint("Range")
-    public List<Top> getSoLuongXuat(){
-        String sqlTop = "select maSP, count(soLuong) as soluong from phieu where loai=1 group by maSP ";
-        List<Top> list = new ArrayList<>();
-        Product_DAO spDao = new Product_DAO(context);
-        Cursor cursor = db.rawQuery(sqlTop,null);
-        while (cursor.moveToNext()){
-            Top top = new Top();
-            Product_model sp = spDao.getProdById(cursor.getInt(cursor.getColumnIndex("maSP")));
-            top.setTen(sp.getTenSP());
-            top.setSoluong(Integer.parseInt(cursor.getString(cursor.getColumnIndex("soluong"))));
-            list.add(top);
+    public long getDoanhThu(int loaiPhieu) {
+        db = dbHelper.getReadableDatabase();
+        long doanhThu = 0;
+        String query = "SELECT SUM(p.soLuong * sp.giaSP) as doanhThu " +
+                "FROM PHIEU p " +
+                "JOIN SANPHAM sp ON sp.maSP = p.maSP " +
+                "WHERE p.loaiPhieu = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(loaiPhieu)});
+        if (cursor.moveToFirst()) { // Di chuyển con trỏ đến hàng đầu tiên
+            doanhThu = cursor.getLong(0); // Lấy giá trị doanhThu từ con trỏ
         }
-        return list;
+        cursor.close(); // Đóng Cursor sau khi sử dụng
+        return doanhThu;
     }
 
 }
