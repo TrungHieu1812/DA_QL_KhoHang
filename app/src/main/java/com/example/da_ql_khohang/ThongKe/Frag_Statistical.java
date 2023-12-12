@@ -1,24 +1,27 @@
 package com.example.da_ql_khohang.ThongKe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
+import com.example.da_ql_khohang.MainActivity;
 import com.example.da_ql_khohang.R;
 import com.example.da_ql_khohang.ThongKe.AdapterTK.adapterThongKe;
-import com.example.da_ql_khohang.databinding.FragProdBinding;
 import com.example.da_ql_khohang.databinding.FragStatisticalBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 
 public class Frag_Statistical extends Fragment {
-    static FragStatisticalBinding binding;
+    FragStatisticalBinding binding;
 
 
     public Frag_Statistical() {
@@ -33,14 +36,32 @@ public class Frag_Statistical extends Fragment {
     private ViewPager2 viewPager2;
     private TabLayout tabLayout;
     adapterThongKe adapter;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragStatisticalBinding.inflate(inflater, container, false);
-        View view = inflater.inflate(R.layout.frag_statistical,container,false);
+        return binding.getRoot();
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         viewPager2 = view.findViewById(R.id.viewpage2);
         tabLayout = view.findViewById(R.id.tabLayout);
         adapter = new adapterThongKe(getActivity());
         viewPager2.setAdapter(adapter);
+
+        //
+        binding.home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
         new TabLayoutMediator(tabLayout, viewPager2, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
@@ -52,7 +73,18 @@ public class Frag_Statistical extends Fragment {
                 }
             }
         }).attach();
-
-        return view;
     }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        binding = FragStatisticalBinding.inflate(inflater, container, false);
+//
+//
+//        return view;
+//    }
+
+
+
+
+
 }
