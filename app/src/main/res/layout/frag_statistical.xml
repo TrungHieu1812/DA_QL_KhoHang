@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:background="#567DF4">
 
         <TextView
@@ -16,26 +16,27 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="THỐNG KÊ"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:layout_marginHorizontal="10dp"
-            app:defaultQueryHint="Nội dung tìm kiếm"
-            app:iconifiedByDefault="true" />
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="30dp"
+            android:layout_gravity="left"
+            android:layout_marginEnd="5dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_homee" />
+
 
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="51dp"
         android:id="@+id/tabLayout"
         app:tabTextColor="@color/black"
         android:background="@color/white"

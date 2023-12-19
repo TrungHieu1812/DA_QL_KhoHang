@@ -6,10 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import com.example.da_ql_khohang.DataBase.DBHelper;
 import com.example.da_ql_khohang.SanPham.Product_DAO;
 import com.example.da_ql_khohang.SanPham.Product_model;
 import com.example.da_ql_khohang.ThongKe.ThongKe_model;
-import com.example.da_ql_khohang.database.DBHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -9,17 +9,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        app:navigationIcon="@drawable/baseline_arrow_back_24"
+        app:title="THÀNH VIÊN"
+        app:titleTextColor="@color/white"
         android:background="#567DF4">
 
-        <TextView
-            android:id="@+id/tvToolbar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="THÀNH VIÊN"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_bar"

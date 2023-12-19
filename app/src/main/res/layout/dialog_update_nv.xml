@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="1dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_view"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
-            android:layout_margin="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            android:padding="8dp">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Update thành viên"
+                android:text="UPDATE THÀNH VIÊN"
                 android:textAlignment="center"
                 android:textColor="#567DF4"
                 android:textSize="36sp"
@@ -32,99 +32,62 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tên thành viên"
-                android:id="@+id/etl_sua_ten_nv"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                android:layout_marginTop="20dp"
+                android:hint="Họ và tên"
+                app:startIconDrawable="@drawable/ic_assignment_ind_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sua_ten_nv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
+                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="5"
-                    android:hint="Tài khoản"
-                    android:id="@+id/etl_sua_username_nv"
-                    android:layout_marginRight="20dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_sua_username_nv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="5"
-                    android:id="@+id/etl_sua_passwd_nv"
-                    android:hint="Mật khẩu"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_sua_passwd_nv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="10"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
+                android:layout_marginRight="20dp"
+                android:layout_weight="5"
+                android:hint="Tên đăng nhập"
+                app:startIconDrawable="@drawable/ic_person_24">
 
-
-                <com.google.android.material.textfield.TextInputLayout
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sua_username_nv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    app:startIconDrawable="@drawable/ic_sl"
-                    android:hint="Chức vụ"
-                    android:id="@+id/etl_sua_level_nv"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    android:layout_height="wrap_content" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_sua_level_nv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="5"
+                android:hint="Mật khẩu"
+                app:startIconDrawable="@drawable/ic_lock_24">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sua_passwd_nv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
-
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
                 android:layout_marginTop="20dp"
+                android:layout_weight="5"
                 android:hint="Email"
-                android:id="@+id/etl_sua_mail_nv"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                app:startIconDrawable="@drawable/ic_email_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_sua_mail_nv"
@@ -133,11 +96,27 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_weight="5"
+                android:hint="Ảnh"
+                app:startIconDrawable="@drawable/ic_image">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_sua_avatar_nv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnHuy"
@@ -161,7 +140,6 @@
                     app:cornerRadius="20dp" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>
