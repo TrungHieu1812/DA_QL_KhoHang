@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DA_QL_KhoHang"
         tools:targetApi="31">
         <activity
+            android:name=".TheLoai.Category_Activity"
+            android:exported="false" />
+        <activity
             android:name=".ThanhVien.Activity_profile"
             android:exported="false" />
         <activity
