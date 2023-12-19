@@ -1,5 +1,9 @@
 package com.example.da_ql_khohang.ThongKe.FragmentTK;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,11 +36,20 @@ public class frgThongKeSoLuongXuat extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_frg_thong_ke_so_luong_nhap, container, false);
         rcv_SoLuong = view.findViewById(R.id.rcv_SoLuong);
+        SharedPreferences pref = getContext().getSharedPreferences("NHAP_XUAT", MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putInt("LOAI", 1);
+        edit.commit();
         tkDAO = new ThongKeDao(getContext());
         list = (ArrayList<ThongKe_model>) tkDAO.getTKSL(1);
         rcv_SoLuong.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new ThongKeAdapter(getContext(),list);
         rcv_SoLuong.setAdapter(adapter);
         return view;
+    }
+    public void loadDS(Context context, ArrayList<ThongKe_model> list1, RecyclerView recyclerView){
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        ThongKeAdapter adapter1 = new ThongKeAdapter(context,list1);
+        recyclerView.setAdapter(adapter1);
     }
 }

@@ -48,7 +48,7 @@ public class Frag_Statistical extends Fragment {
                 if (position == 0){
                     tab.setText("Thống kê số lượng");
                 } else if (position == 1) {
-                    tab.setText("Thống kê lượng tiền");
+                    tab.setText("Doanh thu");
                 }
             }
         }).attach();
