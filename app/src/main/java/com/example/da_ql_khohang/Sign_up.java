@@ -1,6 +1,7 @@
 package com.example.da_ql_khohang;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -14,27 +15,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.da_ql_khohang.ThanhVien.Member_DAO;
 import com.example.da_ql_khohang.ThanhVien.Member_Model;
+import com.example.da_ql_khohang.databinding.ActivityMainBinding;
+import com.example.da_ql_khohang.databinding.ActivitySignUpBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class Sign_up extends AppCompatActivity {
-    EditText tvEmail, tvUser;
-    TextView tvlogin;
-    TextInputEditText edPasscode, edConfirm;
-    Button btnSign_up;
+
+
+    ActivitySignUpBinding binding;
     Member_DAO memberDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
-        getView();
+        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        getWindow().setStatusBarColor(Color.parseColor("#567DF4"));
+
+
         memberDao = new Member_DAO(this);
-        tvlogin.setOnClickListener(new View.OnClickListener() {
+        binding.tvlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Sign_up.this, Sign_in.class));
             }
         });
-        btnSign_up.setOnClickListener(new View.OnClickListener() {
+        binding.btnSigup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 register();
@@ -44,16 +50,19 @@ public class Sign_up extends AppCompatActivity {
     }
 
     private void register() {
-        String user = tvUser.getText().toString();
-        String email = tvEmail.getText().toString();
-        String pass = edPasscode.getText().toString();
-        String confirm = edConfirm.getText().toString();
+        String username = binding.tvUser.getText().toString();
+        String email = binding.tvEmail.getText().toString();
+        String pass = binding.edPasscode.getText().toString();
+        String confirm = binding.edConfirm.getText().toString();
+        String fullname = binding.tvFullname.getText().toString();
+        String avatar = binding.tvAvatar.getText().toString();
 
-        if (user.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
+
+        if (username.isEmpty() || email.isEmpty() || pass.isEmpty() || confirm.isEmpty()|| fullname.isEmpty()) {
             Toast.makeText(this, "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (TextUtils.isEmpty(user)) {
+        if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, "Vui lòng nhập tên đăng nhập", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -78,8 +87,14 @@ public class Sign_up extends AppCompatActivity {
             return;
         }
         // ktra đăng ký
-        Member_Model tv = new Member_Model(user,user,pass,email,"nhanvien");
-        if (memberDao.insert_mem(tv) != -1) {
+        Member_Model member = new Member_Model();
+        member.setFullname(fullname);
+        member.setUsername(username);
+        member.setPasswd(pass);
+        member.setEmail(email);
+        member.setAvatar(avatar);
+        member.setRole(1);
+        if (memberDao.insert_mem(member) != false) {
             startActivity(new Intent(Sign_up.this, Sign_in.class));
             Toast.makeText(Sign_up.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
         } else {
@@ -91,12 +106,4 @@ public class Sign_up extends AppCompatActivity {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public void getView() {
-        tvEmail = findViewById(R.id.tvEmail);
-        tvUser = findViewById(R.id.tvUser);
-        tvlogin = findViewById(R.id.tvlogin);
-        edPasscode = findViewById(R.id.edPasscode);
-        edConfirm = findViewById(R.id.edConfirm);
-        btnSign_up = findViewById(R.id.btnLogin);
-    }
 }

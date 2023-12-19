@@ -2,38 +2,23 @@ package com.example.da_ql_khohang.ThanhVien;
 
 public class Member_Model {
     private int id_nv;
-    private String ten,username,passwd,email,level;
+    private String fullname,username,passwd,email,avatar;
+
+    private int role;
+
 
     public Member_Model() {
 
     }
 
-    public Member_Model(String ten, String username, String passwd, String email, String level) {
-        this.ten = ten;
-        this.username = username;
-        this.passwd = passwd;
-        this.email = email;
-        this.level = level;
-    }
-
-    public Member_Model(int id_nv, String ten, String username, String passwd, String email, String level) {
-        this.ten = ten;
+    public Member_Model(int id_nv, String fullname, String username, String passwd, String email, String avatar, int role) {
         this.id_nv = id_nv;
+        this.fullname = fullname;
         this.username = username;
         this.passwd = passwd;
         this.email = email;
-        this.level = level;
-    }
-
-    public Member_Model(int id, String tenNv) {
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
+        this.avatar = avatar;
+        this.role = role;
     }
 
     public int getId_nv() {
@@ -42,6 +27,14 @@ public class Member_Model {
 
     public void setId_nv(int id_nv) {
         this.id_nv = id_nv;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getUsername() {
@@ -68,11 +61,19 @@ public class Member_Model {
         this.email = email;
     }
 
-    public String getLevel() {
-        return level;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setLevel(String level) {
-        this.level= level;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

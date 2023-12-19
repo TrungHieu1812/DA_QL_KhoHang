@@ -1,6 +1,7 @@
 package com.example.da_ql_khohang.TheLoai;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +15,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
+import com.example.da_ql_khohang.MainActivity;
 import com.example.da_ql_khohang.R;
-import com.example.da_ql_khohang.SanPham.Product_model;
-import com.example.da_ql_khohang.SanPham.prod_Adapter;
 import com.example.da_ql_khohang.databinding.DialogAddCategoryBinding;
-import com.example.da_ql_khohang.databinding.DialogAddProdBinding;
 import com.example.da_ql_khohang.databinding.FragCategoryBinding;
-import com.example.da_ql_khohang.databinding.FragMemberBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -51,6 +49,13 @@ public class Frag_category extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+        });
 
         loadData();
 

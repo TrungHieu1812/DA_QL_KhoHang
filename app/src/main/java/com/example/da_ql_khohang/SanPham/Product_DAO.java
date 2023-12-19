@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.da_ql_khohang.database.DBHelper;
+import com.example.da_ql_khohang.DataBase.DBHelper;
 import com.example.da_ql_khohang.TheLoai.category_model;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class Product_DAO {
         return listProd;
     }
 
-    public boolean insertProd(String tenSP,int giaSP,int soLuong,int soLuuKho,String anhSP,int maLoai) {
+    public boolean insertProd(String tenSP, int giaSP, int soLuong, int soLuuKho, String anhSP, int maLoai) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("tenSP", tenSP);
@@ -79,7 +79,7 @@ public class Product_DAO {
     }
 
 
-    public boolean updateProd(Product_model prod){
+    public boolean updateProd(Product_model prod) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("tenSP", prod.getTenSP());
@@ -88,7 +88,7 @@ public class Product_DAO {
         values.put("soLuuKho", prod.getSoLuuKho());
         values.put("anhSP", prod.getImg());
         values.put("maLoai", prod.getMaLoai());
-        long check = db.update("SANPHAM",values, "maSP = ?",new String[]{String.valueOf(prod.getId())});
+        long check = db.update("SANPHAM", values, "maSP = ?", new String[]{String.valueOf(prod.getId())});
         if (check == -1)
             return false;
         return true;
@@ -107,8 +107,6 @@ public class Product_DAO {
         }
         return null;
     }
-
-
 
 
 }

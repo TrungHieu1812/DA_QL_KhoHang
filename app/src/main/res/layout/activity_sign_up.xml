@@ -18,9 +18,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="USERNAME"
+            android:text="FULLNAME"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
+            android:textStyle="normal"
+            android:textColor="#888888"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/tvFullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/form"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USERNAME"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:textStyle="normal"
             android:textColor="#888888"
             android:textSize="15dp"/>
@@ -30,10 +54,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/form"
-            android:padding="15dp"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +77,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/form"
-            android:padding="15dp"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AVATAR"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="normal"
+            android:textColor="#888888"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/tvAvatar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/form"
+            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:background="@drawable/form"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:maxLines="1"
                 android:text=""/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,18 +158,18 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:background="@drawable/form"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:maxLines="1"
                 android:text=""/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnSigup"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/form"
             android:backgroundTint="#567DF4"
             android:paddingStart="15dp"
@@ -145,7 +190,7 @@
             android:layout_height="wrap_content"
             android:text="BACK TO LOGIN"
             android:layout_gravity="center"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:textColor="#0A7B00"
             android:textSize="15dp"/>
