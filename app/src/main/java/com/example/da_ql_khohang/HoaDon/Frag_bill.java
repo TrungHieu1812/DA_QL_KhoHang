@@ -173,7 +173,7 @@ public class Frag_bill extends Fragment {
                 String sl = ed_sl.getText().toString();
                 String kho = khoLuuTru.getText().toString();
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date currentDate = new Date();
                 String formattedDate = dateFormat.format(currentDate);
 

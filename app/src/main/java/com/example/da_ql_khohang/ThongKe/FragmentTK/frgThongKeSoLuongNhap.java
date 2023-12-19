@@ -1,5 +1,9 @@
 package com.example.da_ql_khohang.ThongKe.FragmentTK;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,6 +43,13 @@ public class frgThongKeSoLuongNhap extends Fragment {
         adapter = new ThongKeAdapter(getContext(),list);
         rcv_SoLuong.setAdapter(adapter);
         return view;
+    }
+
+    public void loadDS(Context context,ArrayList<ThongKe_model> list1,RecyclerView recyclerView){
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        ThongKeAdapter adapter1 = new ThongKeAdapter(context,list1);
+        recyclerView.setAdapter(adapter1);
+        adapter1.notifyDataSetChanged();
     }
 
 
