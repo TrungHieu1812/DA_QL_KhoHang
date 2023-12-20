@@ -1,4 +1,4 @@
-package com.example.da_ql_khohang.DataBase;
+package com.example.da_ql_khohang.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +10,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "QLKH";
 
     public DBHelper(@Nullable Context context) {
-        super(context, DB_NAME, null, 3);
+        super(context, DB_NAME, null, 4);
     }
 
     @Override
