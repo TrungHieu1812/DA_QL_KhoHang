@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.da_ql_khohang.R;
 import com.example.da_ql_khohang.ThongKe.DAO.ThongKeDao;
 import com.example.da_ql_khohang.ThongKe.ThongKe_model;
@@ -46,7 +47,7 @@ public class ThongKeAdapter extends RecyclerView.Adapter<ThongKeAdapter.viewhold
             ThongKe_model tk = list.get(position);
             holder.txt_SL.setText(tk.getSoLuong()+"");
             holder.txt_tenSp.setText(tk.getTensp()+"");
-            holder.img_sp.setImageURI(tk.getHinhsp());
+            Glide.with(this.context).load(tk.getHinhsp()).into(holder.img_sp);
 
             if (context.equals(currentFragment)){
                 holder.txt_giaSp.setVisibility(View.VISIBLE);

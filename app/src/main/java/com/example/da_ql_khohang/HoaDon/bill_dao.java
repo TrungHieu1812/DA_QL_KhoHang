@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.da_ql_khohang.database.DBHelper;
+import com.example.da_ql_khohang.DataBase.DBHelper;
 import com.example.da_ql_khohang.HoaDon.model.bill;
 
 import java.util.ArrayList;

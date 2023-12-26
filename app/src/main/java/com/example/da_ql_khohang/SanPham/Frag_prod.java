@@ -76,6 +76,8 @@ public class Frag_prod extends Fragment {
 
         loadData();
 
+
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,18 +113,23 @@ public class Frag_prod extends Fragment {
     private void loadData() {
         dao = new Product_DAO(getContext());
         prodList = dao.getAllProduct();
+//        SimpleAdapter simpleAdapter = new SimpleAdapter(
+//                getContext(),
+//                getLoaiSP(),
+//                android.R.layout.simple_spinner_item,
+//                new String[]{"tenLoai"},
+//                new int[]{android.R.id.text1});
+//
+//        binding.spner.setAdapter(simpleAdapter);
+//        HashMap<String, Object> hs = (HashMap<String, Object>) binding.spner.getSelectedItem();
+//        int maloai = (int) hs.get("maLoai");
+//        prodList = dao.getProdByIdCat(maloai);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.rcv.setLayoutManager(linearLayoutManager);
         adapter = new prod_Adapter(getActivity(),prodList,getLoaiSP(),dao);
 
-        SimpleAdapter simpleAdapter = new SimpleAdapter(
-                getContext(),
-                getLoaiSP(),
-                android.R.layout.simple_spinner_item,
-                new String[]{"tenLoai"},
-                new int[]{android.R.id.text1});
 
-        binding.spner.setAdapter(simpleAdapter);
 
         adapter.notifyDataSetChanged();
         binding.rcv.setAdapter(adapter);
