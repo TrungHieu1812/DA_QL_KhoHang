@@ -20,8 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.example.da_ql_khohang.MainActivity;
 import com.example.da_ql_khohang.R;
+import com.example.da_ql_khohang.ThanhVien.Activity_member;
+import com.example.da_ql_khohang.TheLoai.Category_Activity;
 import com.example.da_ql_khohang.TheLoai.category_DAO;
 import com.example.da_ql_khohang.TheLoai.category_model;
+import com.example.da_ql_khohang.databinding.DialogAddCategoryBinding;
 import com.example.da_ql_khohang.databinding.DialogAddProdBinding;
 import com.example.da_ql_khohang.databinding.FragProdBinding;
 
@@ -38,7 +41,11 @@ public class Frag_prod extends Fragment {
 
     private DialogAddProdBinding dialogBinding;
 
+    private DialogAddCategoryBinding dialogBindingTL;
+
     private Product_DAO dao;
+
+    private category_DAO daoTL;
 
 
     public Frag_prod() {
@@ -69,6 +76,8 @@ public class Frag_prod extends Fragment {
 
         loadData();
 
+
+
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +100,12 @@ public class Frag_prod extends Fragment {
             }
         });
 
+        binding.tvTheLoai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Category_Activity.class));
+            }
+        });
 
     }
 
@@ -98,11 +113,28 @@ public class Frag_prod extends Fragment {
     private void loadData() {
         dao = new Product_DAO(getContext());
         prodList = dao.getAllProduct();
+//        SimpleAdapter simpleAdapter = new SimpleAdapter(
+//                getContext(),
+//                getLoaiSP(),
+//                android.R.layout.simple_spinner_item,
+//                new String[]{"tenLoai"},
+//                new int[]{android.R.id.text1});
+//
+//        binding.spner.setAdapter(simpleAdapter);
+//        HashMap<String, Object> hs = (HashMap<String, Object>) binding.spner.getSelectedItem();
+//        int maloai = (int) hs.get("maLoai");
+//        prodList = dao.getProdByIdCat(maloai);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.rcv.setLayoutManager(linearLayoutManager);
         adapter = new prod_Adapter(getActivity(),prodList,getLoaiSP(),dao);
+
+
+
         adapter.notifyDataSetChanged();
         binding.rcv.setAdapter(adapter);
+
+
     }
 
 
@@ -166,6 +198,10 @@ public class Frag_prod extends Fragment {
         });
 
     }
+
+
+
+
 
 
 

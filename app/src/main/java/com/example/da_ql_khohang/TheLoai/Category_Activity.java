@@ -1,61 +1,47 @@
 package com.example.da_ql_khohang.TheLoai;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.bumptech.glide.Glide;
 import com.example.da_ql_khohang.MainActivity;
 import com.example.da_ql_khohang.R;
+import com.example.da_ql_khohang.databinding.ActivityCategoryBinding;
+import com.example.da_ql_khohang.databinding.ActivityMemberBinding;
 import com.example.da_ql_khohang.databinding.DialogAddCategoryBinding;
-import com.example.da_ql_khohang.databinding.FragCategoryBinding;
 
 import java.util.List;
 
+public class Category_Activity extends AppCompatActivity {
 
-public class Frag_category extends Fragment {
-    private FragCategoryBinding binding;
+    private ActivityCategoryBinding binding;
     private List<category_model> cateList;
     private category_Adapter adapter;
     private DialogAddCategoryBinding dialogBinding;
     private category_DAO dao;
 
-    public Frag_category() {
-    }
-
-
-    public static Fragment newInstance() {
-        Frag_category fragment = new Frag_category();
-        return fragment;
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = FragCategoryBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category);
+        binding = ActivityCategoryBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
-        binding.home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), MainActivity.class));
-            }
-        });
+        getWindow().setStatusBarColor(Color.parseColor("#567DF4"));
+        setSupportActionBar(binding.toolbar);
+        binding.toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
+
 
         loadData();
 
@@ -82,23 +68,23 @@ public class Frag_category extends Fragment {
         });
 
 
-    }
 
+    }
     private void loadData() {
-        dao = new category_DAO(getContext());
+        dao = new category_DAO(this);
         cateList = dao.getDataCate();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         binding.rcv.setLayoutManager(linearLayoutManager);
-        adapter = new category_Adapter(getActivity(),cateList);
+        adapter = new category_Adapter(this,cateList);
         adapter.notifyDataSetChanged();
         binding.rcv.setAdapter(adapter);
     }
 
 
     private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext()); // view.getRootView().getContext()
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); // view.getRootView().getContext()
         builder.setCancelable(false);
-        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) this).getLayoutInflater();
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.dialog_add_category, null);
 
         dialogBinding = DialogAddCategoryBinding.inflate(inflater, view, false);
@@ -110,10 +96,10 @@ public class Frag_category extends Fragment {
             @Override
             public void onClick(View view) {
                 if (dialogBinding.edNameCate.getText().toString().equals("")) {
-                    Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Category_Activity.this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
                     dao.insertCate(dialogBinding.edNameCate.getText().toString());
-                    Toast.makeText(getContext(), "Thêm loại sách thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Category_Activity.this, "Thêm loại sách thành công", Toast.LENGTH_SHORT).show();
                     loadData();
                     alertDialog.dismiss();
                 }

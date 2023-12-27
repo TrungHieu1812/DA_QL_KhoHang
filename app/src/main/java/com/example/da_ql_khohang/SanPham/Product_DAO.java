@@ -5,15 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import com.example.da_ql_khohang.DataBase.DBHelper;
 
-import com.example.da_ql_khohang.database.DBHelper;
-import com.example.da_ql_khohang.TheLoai.category_model;
 
 import java.util.ArrayList;
 
 public class Product_DAO {
 
-    private final DBHelper dbHelper;
+    private DBHelper dbHelper;
     private Product_model prod;
 
     public Product_DAO(Context context) {
@@ -108,5 +107,31 @@ public class Product_DAO {
         return null;
     }
 
+
+    public ArrayList<Product_model> getProdByIdCat(int id) {
+        ArrayList<Product_model> listProd = new ArrayList<Product_model>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM SANPHAM WHERE maLoai = ?", new String[]{String.valueOf(id)});
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    prod = new Product_model();
+                    prod.setId(cursor.getInt(0));
+                    prod.setTenSP(cursor.getString(1));
+                    prod.setGiaBan(cursor.getInt(2));
+                    prod.setSoLuong(cursor.getInt(3));
+                    prod.setSoLuuKho(cursor.getInt(4));
+                    prod.setImg(cursor.getString(5));
+                    prod.setMaLoai(cursor.getInt(6));
+                    listProd.add(prod);
+                    cursor.moveToNext();
+                }
+            }
+        } catch (Exception e) {
+            Log.e("zzzzzzzzzzzzzzzzzzzz", "Lỗiiiiii");
+        }
+        return listProd;
+    }
 
 }

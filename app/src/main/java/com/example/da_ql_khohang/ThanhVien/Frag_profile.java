@@ -81,7 +81,9 @@ public class Frag_profile extends Fragment {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getActivity(), Sign_in.class));
+                        Intent intent = new Intent(getActivity(), Sign_in.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
                     }
                 });
                 builder.setNegativeButton("Không", null);

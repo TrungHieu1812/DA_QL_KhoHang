@@ -7,7 +7,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -182,7 +184,30 @@ public class Member_Adapter extends RecyclerView.Adapter<Member_Adapter.ViewHold
                 dao = new Member_DAO(context);
                 if (ten_nv.isEmpty() || username_nv.isEmpty() || passwd_nv.isEmpty() || email_nv.isEmpty()) {
                     Toast.makeText(context, "Không được để trống các trường bắt buộc!", Toast.LENGTH_SHORT).show();
-                } else {
+                    return;
+                }
+                if (TextUtils.isEmpty(ten_nv)) {
+                    Toast.makeText(context, "Vui lòng nhập tên nhân viên", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(username_nv)) {
+                    Toast.makeText(context, "Vui lòng nhập tên đăng nhập", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(passwd_nv)) {
+                    Toast.makeText(context, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(email_nv)) {
+                    Toast.makeText(context, "Vui lòng nhập địa chỉ email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!isValidEmail(email_nv)) {
+                    Toast.makeText(context, "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
                     member.setFullname(ten_nv);
                     member.setUsername(username_nv);
                     member.setPasswd(passwd_nv);
@@ -212,6 +237,9 @@ public class Member_Adapter extends RecyclerView.Adapter<Member_Adapter.ViewHold
         });
     }
 
+    private boolean isValidEmail(CharSequence email_nv) {
+        return !TextUtils.isEmpty(email_nv) && Patterns.EMAIL_ADDRESS.matcher(email_nv).matches();
+    }
 
     @Override
     public int getItemCount() {

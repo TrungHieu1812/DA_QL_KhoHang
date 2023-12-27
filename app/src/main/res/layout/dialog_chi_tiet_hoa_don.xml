@@ -4,73 +4,104 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="15dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="chi tiết hóa đơn"
-        android:textStyle="bold"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="30dp"
-        android:textAllCaps="true"
-        android:layout_gravity="center"
-        />
+        android:textStyle="bold" />
+
     <TextView
-        android:layout_marginTop="35dp"
         android:id="@+id/tv_hoa_don"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
+        android:layout_marginTop="35dp"
+        android:text="Mã hóa đơn :"
         android:textColor="@color/black"
-        android:text="Hóa đơn :"/>
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <TextView
-        android:layout_marginTop="20dp"
         android:id="@+id/tv_nhan_vien"
+        android:layout_width="385dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nhân viên :"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_ten_san_pham"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Tên sản phẩm :"
         android:textColor="@color/black"
-        android:text="Nhân viên :"/>
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tv_gia_tien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ngày lưu kho :"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/tv_so_luong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Số lượng:"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
-
-
-
-
-
-
-
-
-
-
+    <TextView
+        android:id="@+id/tv_thanh_tien"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="thành tiền :"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
 
         >
+
         <Button
             android:id="@+id/btn_huy_hoa_don_chi_tiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HỦY"
-            android:textSize="20dp"
-            android:textColor="@color/white"
             android:layout_weight="3"
-            android:backgroundTint="#03A9F4"/>
+            android:backgroundTint="#03A9F4"
+            android:text="HỦY"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
         <Button
-            android:layout_marginLeft="20dp"
             android:id="@+id/btn_xoa_hoa_don_chi_tiet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="XÓA"
-            android:textSize="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="3"
             android:backgroundTint="#03A9F4"
+            android:text="XÓA"
             android:textColor="@color/white"
-            android:layout_weight="3"/>
+            android:textSize="20dp" />
     </LinearLayout>
 </LinearLayout>

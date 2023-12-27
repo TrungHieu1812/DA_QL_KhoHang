@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +102,29 @@ public class Activity_member extends AppCompatActivity {
                 String avatar = dialogBinding.etThemAvatarNv.getText().toString();
 
                 if (ten_nv.isEmpty() || username_nv.isEmpty() || passwd_nv.isEmpty() || mail_nv.isEmpty()) {
-                    Toast.makeText(Activity_member.this, "Không được để trống", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_member.this, "Không được để trống các trường bắt buộc!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(ten_nv)) {
+                    Toast.makeText(Activity_member.this, "Vui lòng nhập tên nhân viên", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(username_nv)) {
+                    Toast.makeText(Activity_member.this, "Vui lòng nhập tên đăng nhập", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(passwd_nv)) {
+                    Toast.makeText(Activity_member.this, "Vui lòng nhập mật khẩu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(mail_nv)) {
+                    Toast.makeText(Activity_member.this, "Vui lòng nhập địa chỉ email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!isValidEmail(mail_nv)) {
+                    Toast.makeText(Activity_member.this, "Email không đúng định dạng", Toast.LENGTH_SHORT).show();
+                    return;
                 } else {
                     Member_Model member = new Member_Model();
                     member.setFullname(ten_nv);
@@ -132,6 +156,10 @@ public class Activity_member extends AppCompatActivity {
         });
 
 
+    }
+
+    private boolean isValidEmail(CharSequence email_nv) {
+        return !TextUtils.isEmpty(email_nv) && Patterns.EMAIL_ADDRESS.matcher(email_nv).matches();
     }
 
 }
