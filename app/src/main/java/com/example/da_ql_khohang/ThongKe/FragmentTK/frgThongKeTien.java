@@ -149,6 +149,12 @@ public class frgThongKeTien extends Fragment {
     }
 
     public void getBieuDo(PieChart pieChart,ArrayList<ThongKe_model> list){
+        if (list.size() == 0){
+            pieChart.setVisibility(View.GONE);
+        }else {
+            pieChart.setVisibility(View.VISIBLE);
+        }
+
         ArrayList<PieEntry> entries = new ArrayList<>();
         for (ThongKe_model tk : list){
             entries.add(new PieEntry((float) tk.getTongTien(),tk.getTensp()));
@@ -243,8 +249,11 @@ public class frgThongKeTien extends Fragment {
         Arrcalendar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Arrcalendar.add("Tất cả");
         Arrcalendar.add("Hôm nay");
+        Arrcalendar.add("Hôm qua");
         Arrcalendar.add("Tuần này");
+        Arrcalendar.add("Tuần trước");
         Arrcalendar.add("Tháng này");
+        Arrcalendar.add("Tháng trước");
 
         spCalendar.setAdapter(Arrcalendar);
         spCalendar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -262,11 +271,17 @@ public class frgThongKeTien extends Fragment {
                     getTKDT(listNhap,listXuat);
 
                 } else if (select.equals("Hôm nay")) {
-                    dsachTheoNgay();
+                    dsachTheoNgay(0);
+                } else if (select.equals("Hôm qua")) {
+                    dsachTheoNgay(1);
                 } else if (select.equals("Tuần này")){
-                    dsachTheoTuan();
+                    dsachTheoTuan(0);
+                } else if (select.equals("Tuần trước")){
+                    dsachTheoTuan(1);
                 } else if (select.equals("Tháng này")){
-                    dsachTheoThang();
+                    dsachTheoThang(0);
+                }else if (select.equals("Tháng trước")){
+                    dsachTheoThang(1);
                 }
                 pieChartNhap.invalidate();
                 pieChartXuat.invalidate();
@@ -278,16 +293,27 @@ public class frgThongKeTien extends Fragment {
             }
         });
     }
-    private void dsachTheoNgay(){
+    private void dsachTheoNgay(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime(); // Lấy ngày hôm nay
         String currentDateStr = dateFormat.format(currentDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 1); // Thêm 1 ngày vào ngày hiện tại
-        Date tomorrowDate = calendar.getTime(); // Lấy ngày mới
-        String tomorrowDateStr = dateFormat.format(tomorrowDate); // Định dạng ngày mới thành chuỗi
-        ArrayList<ThongKe_model> listNhap = tkDAO.getTKTienTheoNgay(0,currentDateStr,tomorrowDateStr);
-        ArrayList<ThongKe_model> listXuat = tkDAO.getTKTienTheoNgay(1,currentDateStr,tomorrowDateStr);
+        calendar.add(Calendar.DAY_OF_MONTH, -1); // Thêm 1 ngày vào ngày hiện tại
+        Date yesterdayDate = calendar.getTime(); // Lấy ngày hôm qua
+        String yesterdayDateStr = dateFormat.format(yesterdayDate); // Định dạng ngày mới thành chuỗi
+
+        ArrayList<ThongKe_model> listNhap = new ArrayList<>();
+        ArrayList<ThongKe_model> listXuat = new ArrayList<>();
+
+        if (type == 1){
+            listNhap = tkDAO.getTKTienTheoNgay(0,yesterdayDateStr,yesterdayDateStr);
+            listXuat = tkDAO.getTKTienTheoNgay(1,yesterdayDateStr,yesterdayDateStr);
+            tvTime.setText("Ngày "+yesterdayDateStr);
+        } else {
+            listNhap = tkDAO.getTKTienTheoNgay(0,currentDateStr,currentDateStr);
+            listXuat = tkDAO.getTKTienTheoNgay(1,currentDateStr,currentDateStr);
+            tvTime.setText("Ngày "+currentDateStr);
+        }
         // set biểu đồ
         getBieuDo(pieChartNhap,listNhap);
         getBieuDo(pieChartXuat,listXuat);
@@ -297,9 +323,14 @@ public class frgThongKeTien extends Fragment {
         chonloai(listNhap,listXuat);
         tvTime.setText("Ngày "+currentDateStr);
     }
-    private void dsachTheoTuan(){
+    private void dsachTheoTuan(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
+
+        if (type == 1){
+            // lấy tuần trước
+            calendar.add(Calendar.WEEK_OF_YEAR,-1);
+        }
 
         // Thiết lập ngày trong tuần là Thứ Hai (Calendar.MONDAY)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -322,9 +353,15 @@ public class frgThongKeTien extends Fragment {
         chonloai(listNhap,listXuat);
         tvTime.setText("Ngày "+thuHai+" - "+chuNhat);
     }
-    private void dsachTheoThang(){
+    private void dsachTheoThang(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
+
+        if (type == 1){
+            // Lấy tháng trước
+            calendar.add(Calendar.MONTH, -1);
+        }
+
         // Lấy ngày đầu tháng
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         Date dauThang = calendar.getTime();
