@@ -1,14 +1,10 @@
 package com.example.da_ql_khohang.ThongKe.FragmentTK;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.app.DatePickerDialog;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.SharedElementCallback;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -26,17 +22,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.da_ql_khohang.R;
-import com.example.da_ql_khohang.SanPham.Product_DAO;
-import com.example.da_ql_khohang.SanPham.Product_model;
 import com.example.da_ql_khohang.ThongKe.AdapterTK.adapterTKSL;
 import com.example.da_ql_khohang.ThongKe.DAO.ThongKeDao;
 import com.example.da_ql_khohang.ThongKe.ThongKe_model;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -73,6 +73,8 @@ public class frgThongKeSoLuong extends Fragment {
     RecyclerView rcvDSNhap;
 
     Button btnNhap,btnXuat;
+    BarChart barXuat,barNhap;
+    TextView tvSLNhap,tvSLXuat;
 
     frgThongKeSoLuongNhap frg = new frgThongKeSoLuongNhap();
     @Override
@@ -148,9 +150,56 @@ public class frgThongKeSoLuong extends Fragment {
         btnXuat = view.findViewById(R.id.btnXuat);
         tvTime = view.findViewById(R.id.tvTime);
         imgCalendar = view.findViewById(R.id.imgCalendar);
+        barNhap = view.findViewById(R.id.barNhap);
+        barXuat = view.findViewById(R.id.barXuat);
+        tvSLNhap = view.findViewById(R.id.tvSLNhap);
+        tvSLXuat = view.findViewById(R.id.tvSLXuat);
+    }
+
+    public void getBieuDoCot(BarChart barChart,ArrayList<ThongKe_model> list,int type){
+        if (list.size() != 0){
+            barChart.setVisibility(View.VISIBLE);
+        }else {
+            barChart.setVisibility(View.GONE);
+        }
+
+        barChart.getAxisRight().setDrawLabels(false);
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<String> labels = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++){
+            entries.add(new BarEntry(i,(float) list.get(i).getSoLuong()));
+            labels.add(list.get(i).getTensp());
+        }
+
+        YAxis yAxis = barChart.getAxisLeft();
+        yAxis.setAxisMinimum(0f);
+        yAxis.setAxisLineColor(Color.BLACK);
+        yAxis.setLabelCount(10);
+
+        BarDataSet dataSet;
+        if (type == 0){
+             dataSet = new BarDataSet(entries,"Biểu đồ thống kê số lượng Nhập");
+        }else {
+            dataSet = new BarDataSet(entries,"Biểu đồ thống kê số lượng Xuất");
+        }
+        dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+        BarData data = new BarData(dataSet);
+        barChart.setData(data);
+
+        barChart.getDescription().setEnabled(false);
+        barChart.invalidate();
+
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
+        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.getXAxis().setGranularity(1f);
+        barChart.getXAxis().setGranularityEnabled(true);
+
     }
 
     public void getBieuDo(ArrayList<ThongKe_model> listNhap,ArrayList<ThongKe_model> listXuat){
+
         ArrayList<RadarEntry> listChartNhap = new ArrayList<>();
         ArrayList<RadarEntry> listChartXuat= new ArrayList<>();
 
@@ -162,18 +211,10 @@ public class frgThongKeSoLuong extends Fragment {
             labels.add(tk.getTensp()); // Thêm giá trị vào danh sách labels
 
             // Kiểm tra xem sản phẩm có tồn tại trong listXuat hay không
-            boolean existsInListXuat = false;
             for (ThongKe_model xuat : listXuat) {
                 if (xuat.getTensp().equals(tk.getTensp())) {
-                    existsInListXuat = true;
                     break;
                 }
-            }
-
-            // Nếu sản phẩm không tồn tại trong listXuat, thêm giá trị mặc định hoặc giá trị tương ứng
-            if (!existsInListXuat) {
-                listChartXuat.add(new RadarEntry(0)); // Thêm giá trị mặc định vào listChartXuat
-                listXuat.add(new ThongKe_model(tk.getTensp(), 0)); // Thêm sản phẩm mới vào listXuat
             }
         }
         for (int i = 0; i < listXuat.size(); i++) {
@@ -182,20 +223,12 @@ public class frgThongKeSoLuong extends Fragment {
 
 
             // Kiểm tra xem sản phẩm có tồn tại trong listXuat hay không
-            boolean existsInListXuat = false;
             for (ThongKe_model nhap : listNhap) {
                 if (nhap.getTensp().equals(tk.getTensp())) {
-                    existsInListXuat = true;
                     break;
                 }
             }
 
-            // Nếu sản phẩm không tồn tại trong listXuat, thêm giá trị mặc định hoặc giá trị tương ứng
-            if (!existsInListXuat) {
-                labels.add(tk.getTensp());
-                listChartNhap.add(new RadarEntry(0)); // Thêm giá trị mặc định vào listChartXuat
-                listNhap.add(new ThongKe_model(tk.getTensp(), 0)); // Thêm sản phẩm mới vào listXuat
-            }
         }
 
         RadarDataSet dataSetNhap = new RadarDataSet(listChartNhap,"Nhập Kho");
@@ -220,6 +253,9 @@ public class frgThongKeSoLuong extends Fragment {
         radarChart.setData(data);
         radarChart.getDescription().setText("Biểu đồ số lượng nhập/xuất");
 
+        getBieuDoCot(barNhap,listNhap,0);
+        getBieuDoCot(barXuat,listXuat,1);
+
     }
 
     private void getSpinner(){
@@ -228,8 +264,11 @@ public class frgThongKeSoLuong extends Fragment {
         Arrcalendar.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Arrcalendar.add("Tất cả");
         Arrcalendar.add("Hôm nay");
+        Arrcalendar.add("Hôm qua");
         Arrcalendar.add("Tuần này");
+        Arrcalendar.add("Tuần trước");
         Arrcalendar.add("Tháng này");
+        Arrcalendar.add("Tháng trước");
 
         spCalendar.setAdapter(Arrcalendar);
         spCalendar.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -247,11 +286,17 @@ public class frgThongKeSoLuong extends Fragment {
                     chonloai(listNhap,listXuat);
 
                 } else if (select.equals("Hôm nay")) {
-                    dsachTheoNgay();
+                    dsachTheoNgay(0);
                 } else if (select.equals("Tuần này")){
-                    dsachTheoTuan();
+                    dsachTheoTuan(0);
+                } else if (select.equals("Tuần trước")){
+                    dsachTheoTuan(1);
                 } else if (select.equals("Tháng này")){
-                    dsachTheoThang();
+                    dsachTheoThang(0);
+                } else if (select.equals("Hôm qua")) {
+                    dsachTheoNgay(1);
+                } else if (select.equals("Tháng trước")){
+                    dsachTheoThang(1);
                 }
                 radarChart.invalidate();
             }
@@ -263,27 +308,42 @@ public class frgThongKeSoLuong extends Fragment {
         });
     }
 
-    private void dsachTheoNgay(){
+    private void dsachTheoNgay(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
         Date currentDate = calendar.getTime(); // Lấy ngày hôm nay
         String currentDateStr = dateFormat.format(currentDate);
-        calendar.add(Calendar.DAY_OF_MONTH, 1); // Thêm 1 ngày vào ngày hiện tại
-        Date tomorrowDate = calendar.getTime(); // Lấy ngày mới
-        String tomorrowDateStr = dateFormat.format(tomorrowDate); // Định dạng ngày mới thành chuỗi
-        ArrayList<ThongKe_model> listNhap = tkDao.getSLSPTheoNgay(0,currentDateStr,tomorrowDateStr);
-        ArrayList<ThongKe_model> listXuat = tkDao.getSLSPTheoNgay(1,currentDateStr,tomorrowDateStr);
+        calendar.add(Calendar.DAY_OF_MONTH, -1); // Thêm 1 ngày vào ngày hiện tại
+        Date yesterdayDate = calendar.getTime(); // Lấy ngày hôm qua
+        String yesterdayDateStr = dateFormat.format(yesterdayDate); // Định dạng ngày mới thành chuỗi
+        ArrayList<ThongKe_model> listNhap = new ArrayList<>();
+        ArrayList<ThongKe_model> listXuat = new ArrayList<>();
+
+        if (type == 1){
+            listNhap = tkDao.getSLSPTheoNgay(0,yesterdayDateStr,yesterdayDateStr);
+            listXuat = tkDao.getSLSPTheoNgay(1,yesterdayDateStr,yesterdayDateStr);
+            tvTime.setText("Ngày "+yesterdayDateStr);
+        } else {
+            listNhap = tkDao.getSLSPTheoNgay(0,currentDateStr,currentDateStr);
+            listXuat = tkDao.getSLSPTheoNgay(1,currentDateStr,currentDateStr);
+            tvTime.setText("Ngày "+currentDateStr);
+        }
         // set biểu đồ
         getBieuDo(listNhap,listXuat);
         // set tksl
         getTKSL(listNhap,listXuat);
         loadDS(listNhap);
         chonloai(listNhap,listXuat);
-        tvTime.setText("Ngày "+currentDateStr);
+
     }
-    private void dsachTheoTuan(){
+    private void dsachTheoTuan(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
+
+        if (type == 1){
+            // lấy tuần trước
+            calendar.add(Calendar.WEEK_OF_YEAR,-1);
+        }
 
         // Thiết lập ngày trong tuần là Thứ Hai (Calendar.MONDAY)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
@@ -305,9 +365,14 @@ public class frgThongKeSoLuong extends Fragment {
         chonloai(listNhap,listXuat);
         tvTime.setText("Ngày "+thuHai+" - "+chuNhat);
     }
-    private void dsachTheoThang(){
+    private void dsachTheoThang(int type){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Calendar calendar = Calendar.getInstance();
+        if (type == 1){
+            // Lấy tháng trước
+            calendar.add(Calendar.MONTH, -1);
+        }
+
         // Lấy ngày đầu tháng
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         Date dauThang = calendar.getTime();
@@ -341,6 +406,8 @@ public class frgThongKeSoLuong extends Fragment {
         }
         tvTonghop.setText("Tổng nhập : "+tongNhap);
         tvTonghopXuat.setText("Tổng xuất : "+tongXuat);
+        tvSLNhap.setText("Đã nhập : "+tongNhap+" sản phẩm");
+        tvSLXuat.setText("Đã xuất : "+tongXuat+" sản phẩm");
     }
     public void loadDS(ArrayList<ThongKe_model> list){
         frg.loadDS(getContext(),list,rcvDSNhap);
